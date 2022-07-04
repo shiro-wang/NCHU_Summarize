@@ -1,0 +1,37 @@
+INCLUDE Irvine32.inc
+.data
+Fib DWORD 1,1,8 DUP(?)	;array 'Fib' length=10
+.code
+main	PROC
+	mov ecx,8				;run 8 times, for Fib[0] and Fib[1] are 1
+	Cal:
+		mov eax,0						;initialize 0 to calculate Fib[n], saved in EAX (start with Fib[2], for Fib[0] and Fib[1] are 1)
+		mov esi,LENGTHOF Fib			;save index to ESI
+		sub esi,ecx						;changed by ECX
+
+		sub esi,2						;next 2 line is going to add Fib[n-2] to EAX
+		add eax,Fib[esi*TYPE Fib]		;now EAX=Fib[n-2]
+
+		add esi,1						;next 2 line is going to add Fib[n-1] to EAX
+		add eax,Fib[esi*TYPE Fib]		;now EAX=Fib[n-2]+Fib[n-1]
+
+		add esi,1						;changing index
+		
+		mov Fib[esi*TYPE Fib],eax		;Fib[n]=Fib[n-2]+Fib[n-1]
+
+		loop	Cal						;continue to calculate
+
+	mov ecx,LENGTHOF Fib				;print all
+	mov esi,OFFSET Fib					;ESI is the memory location of Fib array
+
+	Print:
+		mov edx,LENGTHOF Fib			;EDX saves index in this loop
+		sub edx,ecx						;form 0 to LENGTHOF Fib-1
+		mov eax,[esi+edx*TYPE Fib]		;get Fib[n] in EAX
+		call WriteDec					;print Fin[n] in unsigned integere
+		call Crlf						;next line
+		loop	Print					;continue to print
+
+exit
+main	ENDP
+END	main

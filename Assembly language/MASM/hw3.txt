@@ -1,0 +1,25 @@
+INCLUDE Irvine32.inc
+.data
+A DWORD 2
+B DWORD 8
+cc DWORD 3
+D DWORD 4
+
+.code
+main PROC
+
+		mov eax, A
+		add eax, B
+		mov ebx, cc
+		add ebx, D
+		mov edx, eax
+		sub edx, ebx
+		mov A, edx
+		call DumpRegs			;顯示
+		call Crlf				;換行
+		mov eax,A				;A結果
+		call WriteHex
+exit
+main ENDP
+
+END main

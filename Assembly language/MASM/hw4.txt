@@ -1,0 +1,33 @@
+INCLUDE Irvine32.inc
+.data
+list DWORD 1,1,8 DUP(?)				;直接設一個大小10的DWORD陣列(後續用eax…之類的做)
+aa DWORD 10 DUP(-10)
+.code
+main PROC
+		mov ecx,8					;因為前面已經先設好第一及第二個數為1，所以只要跑8次就好，設ecx為8，並將list的位置給到edx
+		mov edx, OFFSET list
+		L1:
+			mov ebx, [edx]			;將list第一個位置的數給ebx，
+			add edx,4				;將edx位置+4(將位置改變到下一個陣列位置)，
+			add ebx, [edx]			;將第二個位置的數加到原先的ebx，
+			add edx,4				;改變edx位置到下一個陣列位置，
+			mov [edx], ebx			;把算好的ebx內值給到下一個陣列
+			sub edx,4				;再將edx位置一回到上一格以做loop
+			loop L1
+		mov ecx, 10					;現在要印出，將迴圈次數(ecx)改成10
+		mov edx, OFFSET list		;將list第一個位置丟到edx
+		L2:
+			mov eax, [edx]			;將edx位置的值給eax(為了輸出指令)，
+			call WriteInt			
+			call Crlf				;換行
+			add edx,4				;改變edx位置到下一個陣列位置
+			loop L2
+		
+		mov eax, aa
+		mov bx, 1
+		movzx eax, bx
+
+exit
+main ENDP
+
+END main
