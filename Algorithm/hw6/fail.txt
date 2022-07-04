@@ -1,0 +1,40 @@
+public class HW06_4108056004_2 extends Dessert_Desert{
+    public HW06_4108056004_2(){
+    }
+    
+    public int[] maxBlocks(int[][] array){
+        int num = array.length;
+        int[] result = new int[num];
+        for(int i=0;i<num;i++){
+            int mount = array[i].length;
+            int m = 1;
+            int max1 = array[i][0]; int min1 = array[i][0];
+            int max2 = array[i][0]; int min2 = array[i][0];
+            for(int j=1;j<mount;j++){
+                if(array[i][j]<max2){
+                    if(array[i][j]<min2){
+                        min2 = array[i][j];
+                    }
+                }else{
+                    if(min2<min1||min2<max1){
+                        if(min2<min1){
+                            min1 = min2;
+                        }
+                        m--;
+                    }else{
+                        m++;
+                        min1 = min2;
+                        
+                    }
+                    max1 = max2;
+                    min2 = array[i][j];
+                    max2 = array[i][j]; 
+                }
+            }
+            result[i] = m;
+        }
+
+        return result;
+    }
+    
+}

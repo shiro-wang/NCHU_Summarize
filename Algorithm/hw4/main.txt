@@ -1,0 +1,8 @@
+public static void main(String args[]){
+        String [] str ={"111000","001","1010","0000","11111100000001"};
+        HW04_4108056004_1 test = new HW04_4108056004_1();
+        boolean[] ans = test.one0k(str);
+        for(int i=0;i<ans.length;i++){
+            System.out.printf("%b ", ans[i]);
+        }
+    }

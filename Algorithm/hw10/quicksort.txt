@@ -1,0 +1,98 @@
+
+public class HW10_4108056004_2 extends SortingArray{
+    public HW10_4108056004_2(){
+    }
+    
+    public int[] sorting(int [] array){
+        int n = array.length;
+        shuffle(array,n);
+        quick(array,n);
+        return array;
+    }
+    
+    public static void shuffle(int[] array, int n){
+        double x0 = 0.589746;
+        double r = 3.999999;
+        int x;
+        for(int i=0;i<n;i++){
+            x0 = r * x0 * (1-x0);
+            x = (int)(x0*i);
+            swap(array, i, x);
+        }
+    }
+
+    public static void insertionSort(int[] arr, int left, int right)
+    {
+        for (int i = left + 1; i <= right; i++)
+        {
+            int temp = arr[i];
+            int j = i - 1;
+            while (j >= left && arr[j] > temp)
+            {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+            arr[j + 1] = temp;
+        }
+    }
+    public static void quick(int[] number,int n) {
+
+        partition(number, 0, n-1); 
+    }
+    
+
+    private static void partition(int number[], int left, int right) { 
+        if(left>=right) return; 
+        if(right-left <=10){
+            insertionSort(number, left, right);
+            return;
+        }
+        int median = medianof3(number,left,(right-left)/2,right);
+        swap(number, left, median);
+
+        int i=left; int j=right+1;
+        while(true){
+            while(number[left]>number[++i]){
+                if(i==right) break;
+            }
+            while(number[left]<number[--j]){
+                if(j==left) break;
+            }
+            
+            if(i>=j) break;
+            swap(number, i, j);
+        }
+        swap(number, left, j);
+        partition(number, j+1, right);
+        partition(number, left, j-1);
+    } 
+    public static int medianof3(int[] number, int lo, int m, int hi){
+        if(lo>m){
+            if(m>hi){
+                return m;
+            }else{
+                if(lo>hi){
+                    return hi;
+                }else{
+                    return lo;
+                }
+            }
+        }else{
+            if(lo>hi){
+                return lo;
+            }else{
+                if(m>hi){
+                    return hi;
+                }else{
+                    return m;
+                }
+            }
+        }
+    }
+    private static void swap(int[] number, int i, int j) {
+        int tmp = number[i];
+        number[i]=number[j];
+        number[j]=tmp;
+    }
+    
+}

@@ -1,0 +1,7 @@
+public static void main(String args[]){
+        int [][] array = {{1,1},{2,2},{3,6},{4,9},{-10,2},{-1,-1}};
+        HW05_4108056004_1 test = new HW05_4108056004_1();
+        boolean ans = test.checkLLK(array);
+        System.out.println(ans);
+        
+    }

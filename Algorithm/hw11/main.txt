@@ -1,0 +1,8 @@
+public static void main(String args[]){
+        String [] A = {"A","B","B","C","B","D","F","G"};
+        String [] B = {"E","E","C","D","D","E","H","H"};
+        HW11_4108056004_1 test = new HW11_4108056004_1();
+        
+        int final_ans = test.count(A, B);
+        System.out.println(final_ans);
+    }
