@@ -1,3 +1,0 @@
-test 14 starts now.
-Shortest path: 14, The number of different paths: 21155
-
