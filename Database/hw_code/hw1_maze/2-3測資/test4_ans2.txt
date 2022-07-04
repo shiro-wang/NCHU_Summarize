@@ -1,0 +1,3 @@
+test 4 starts now.
+Shortest path: 6, The number of different paths: 5
+

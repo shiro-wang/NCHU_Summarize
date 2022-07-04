@@ -1,0 +1,3 @@
+test 12 starts now.
+Shortest path: 23, The number of different paths: 408
+
