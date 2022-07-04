@@ -1,0 +1,26 @@
+{% extends "board/base.html" %}
+{% block title %}分享日記{% endblock %}
+{% block content %}
+<div class="container">
+	{% for alert_message in messages %}
+		<div class="alert alert-{{ alert_message.tags }}">{{ alert_message }}</div>
+	{% endfor %}
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading" align="center">
+					<h3>私人日記</h3>
+				</div>
+			</div>
+		</div>	
+	</div>
+
+	<form action='.' method="POST">
+		{% csrf_token %}
+		<table>
+			{{ login_form.as_table }}
+		</table>
+		<input type="submit" name="登入">
+	</form>
+</div>
+{% endblock %}

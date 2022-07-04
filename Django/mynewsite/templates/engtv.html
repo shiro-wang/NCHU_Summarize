@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}News{% endblock %}
+{% block tvname %}{{ tv.name }}{% endblock %}
+{% block menu %}
+	<ul class='nav navbar-nav'>
+		<li class='active'><a href="/">HOME</a></li>
+		<li><a href="{% url 'tv-url' 0 %}">DW news</a></li>
+		<li><a href="{% url 'tv-url' 1 %}">ABC news</a></li>
+		<li><a href="{% url 'tv-url' 2 %}">EURO news</a></li>
+	</ul>
+{% endblock %}
+{% block contain %}
+	<div class=container>
+		<div id='tvcode' align='center'>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ tv.tvcode }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		</div>
+	</div>
+{% endblock %}

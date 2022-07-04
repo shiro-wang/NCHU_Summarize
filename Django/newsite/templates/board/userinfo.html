@@ -1,0 +1,45 @@
+{% extends "board/base.html" %}
+{% block title %}分享日記{% endblock %}
+{% block content %}
+<div class="container">
+	{% if alert_message %}
+		<div class="alert alert-warning">{{ alert_message }}</div>
+	{% endif %}
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading" align="center">
+					<h3>使用者資訊</h3>
+				</div>
+			</div>
+		</div>	
+	</div>
+	<div class='row'>
+		<div class='col-md-12'>
+			<div class="panel panel-primary">
+				<div class="panel-heading" align="center">
+					{{userinfo.user.username|upper}}					
+				</div>
+				<div class="panel panel-body">
+					帳號：{{user}}<br>
+					電子郵件：{{userinfo.user.email}}<br>
+					身高：{{userinfo.height}}<br>
+					性別：{{userinfo.male|yesno:"男,女"}}<br>
+					個人網站：<a href="{{userinfo.website}}">{{userinfo.website}}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- <p>
+		姓名：{{ userinfo.username }}<br>
+		E-mail：{{ userinfo.email }}
+	</p> -->
+	<form name="myname" action="." method="POST">
+		{% csrf_token %}
+		<table>
+			{{profile_form.as_table}}
+		</table>
+		<input type="submit" value="修改個人資料">
+	</form>
+</div>
+{% endblock %}

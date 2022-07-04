@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Musics{% endblock %}
+{% block tvname %}{{ tv.name }}{% endblock %}
+{% block menu %}
+	<ul class='nav navbar-nav'>
+		<li class='active'><a href="/">HOME</a></li>
+		{% for t in tv_list %}
+		<li><a href="{% url 'musictv-url' forloop.counter0 %}">{{ t.name }}</a></li>
+		{% endfor %}
+	</ul>
+{% endblock %}
+{% block contain %}
+	<div class=container>
+		<div id='tvcode' align='center'>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ tv.tvcode }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		</div>
+	</div>
+{% endblock %}
